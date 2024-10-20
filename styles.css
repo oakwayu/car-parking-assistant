@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('images/background.jpg'); /* เปลี่ยนเป็น URL ของภาพพื้นหลังที่คุณต้องการ */
+    background-size: cover; /* ปรับขนาดให้เต็มพื้นที่ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาวเพื่อให้เห็นชัดบนพื้นหลัง */
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* พื้นหลังของกรอบเป็นสีดำโปร่งแสง */
+    border: 2px solid #8B4513; /* กรอบสีน้ำตาล */
+    border-radius: 10px; /* มุมของกรอบมน */
+    padding: 20px; /* เพิ่มพื้นที่ด้านในกรอบ */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* เพิ่มเงาให้กับกรอบ */
+    display: flex; /* ใช้ flexbox */
+    flex-direction: column; /* จัดเรียงในแนวตั้ง */
+    align-items: center; /* จัดกลางในแนวนอน */
+}
+
+.light {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px; /* เพิ่มระยะห่างระหว่างไฟ */
+    opacity: 0.3;
+}
+
+.active {
+    opacity: 1; /* ไฟที่เปิด */
+}
+
+#greenLight {
+    background-color: green;
+}
+
+#yellowLight {
+    background-color: yellow;
+}
+
+#redLight {
+    background-color: red;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+}

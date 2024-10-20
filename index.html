@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parking Aid</title>
+    <link rel="stylesheet" href="styles.css"> <!-- ลิ้งค์ไปยัง styles.css -->
+</head>
+<body>
+
+    <div class="container"> <!-- กรอบสำหรับ UI -->
+        <div id="greenLight" class="light"></div>
+        <div id="yellowLight" class="light"></div>
+        <div id="redLight" class="light"></div>
+
+        <button onclick="simulateSensor(5)">Test Danger</button>
+        <button onclick="simulateSensor(20)">Test Warning</button>
+        <button onclick="simulateSensor(50)">Test Safe</button>
+    </div>
+
+    <script>
+        let currentAudio = null; // ตัวแปรสำหรับเก็บเสียงปัจจุบัน
+
+        function simulateSensor(distance) {
+            // ลบคลาส 'active' ออกจากไฟทั้งหมดก่อน
+            document.getElementById('greenLight').classList.remove('active');
+            document.getElementById('yellowLight').classList.remove('active');
+            document.getElementById('redLight').classList.remove('active');
+
+            // หยุดเสียงที่กำลังเล่นอยู่ถ้ามี
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0; // เริ่มเล่นเสียงใหม่
+            }
+
+            // กำหนดสัญญาณตามระยะที่เลือก
+            if (distance < 10) {
+                // ระยะอันตราย
+                document.getElementById('redLight').classList.add('active');
+                currentAudio = playSound('danger.mp3'); // เสียงอันตราย
+            } else if (distance < 30) {
+                // ระยะเตือน
+                document.getElementById('yellowLight').classList.add('active');
+                currentAudio = playSound('warning.mp3'); // เสียงเตือน
+            } else {
+                // ระยะปลอดภัย
+                document.getElementById('greenLight').classList.add('active');
+                currentAudio = playSound('safe.mp3'); // เสียงปลอดภัย
+            }
+        }
+
+        // ฟังก์ชันสำหรับการเล่นเสียง
+        function playSound(soundFile) {
+            var audio = new Audio(soundFile);
+            audio.loop = true; // ให้เสียงวนซ้ำ
+            audio.play().catch(function(error) {
+                console.error("Error playing sound:", error);
+            });
+            return audio; // ส่งกลับเสียงปัจจุบัน
+        }
+    </script>
+</body>
+</html>
